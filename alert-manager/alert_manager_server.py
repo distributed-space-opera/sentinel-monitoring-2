@@ -1,8 +1,10 @@
+from platform import node
 import grpc
 from concurrent import futures
-import time
+import smtplib
 import alert_manager_pb2 as pb2
 import alert_manager_pb2_grpc as pb2_grpc
+import email_service as EmailService
 
 
 class AlertManagerService(pb2_grpc.AlertManagerServiceServicer):
@@ -11,12 +13,26 @@ class AlertManagerService(pb2_grpc.AlertManagerServiceServicer):
         pass
 
     def NodeDown(self, request, context):
-        message = request.nodeIP
-        # result = f'Hello I am up and running received "{message}" message from you'
-        print(message)
+        nodeIP = request.nodeIP
+        print("Node down ", nodeIP)
+        self.notifyByEmail(nodeIP)
         result = {'responseCode': 200, 'responseMessage': "OK"}
 
         return pb2.NodeStatusResponse(**result)
+
+    def notifyByEmail(self, nodeIP):
+        subject = 'Pager alert: Node %s is not responding' % nodeIP
+        body = """\
+            <html>
+            <body>
+                <p>Hi,<br>
+                <p> The node instance with IP %s is not responding. Please take a look.</p>
+            </body>
+            </html>
+            """ % nodeIP
+
+        EmailService .sendEmail(subject, body)
+
 
 
 def serve():
