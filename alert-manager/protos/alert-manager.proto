@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package unary;
+
+service AlertManagerService{
+    rpc NodeDown(NodeStatusRequest) returns (NodeStatusResponse) {}
+}
+
+message NodeStatusRequest{
+ string nodeIP = 1;
+}
+
+message NodeStatusResponse{
+    int32 responseCode = 1;
+    string responseMessage = 2;  
+}
