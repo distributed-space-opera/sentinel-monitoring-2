@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package monitor;
+
+// for testing purpose
+service Monitor {
+    rpc PersistHeartbeat (HeartBeat) returns (HeartBeatReceivedACK) {}
+}
+
+message HeartBeat {
+    string node_ip = 1;
+    string node_status = 2; // "HEALTHY"
+    string timestamp = 3;
+    string response_time = 4;
+}
+
+message HeartBeatReceivedACK {
+    string successACK = 1; //"Heartbeat received"
+}

@@ -1,0 +1,113 @@
+node_ip
+node_status
+timestamp
+response_time
+
+
+
+
+M1
+===
+monitoring = {
+	node_ip : [
+		{  ... each second data ... },
+		{}
+
+		{
+			node_status
+			timestamp
+			response_time
+		}
+	]
+}
+
+
+M2
+----
+
+<NODE_IP>_HEALTH_STATUS: [
+	{  ... each second data ... },
+
+]
+
+
+
+
+
+
+
+
+
+INPUT:
+=======
+{
+	node_ip,
+	status,
+	timestamp,
+	response_time
+}
+
+
+OUPUT:
+======
+	- persist this data in db - for each node
+	- 
+
+
+	monitoring = {
+		node_ip : [
+			{  ... each second data ... },
+			{}
+
+			{
+				node_status
+				timestamp
+				response_time
+			}
+		]
+	}
+
+	OR
+
+	<NODE_IP>_HEALTH_STATUS: [
+		{  ... each second data ... },
+	]
+
+
+
+
+
+
+=============
+
+
+- service (proto file)
+  (compile somehow - genrate files)
+
+- import those files in py
+
+
+
+https://grpc.io/docs/languages/python/quickstart/
+
+
+==============
+
+
+Monitor
+--------
+
+
+
+aomkar@aomkar:~/OMI/SJSU/SEMESTER_2/CMPE_275/project/sentinel-monitoring-2/monitor$ python3 -m grpc_tools.protoc -Iprotos --python_out=. --grpc_python_out=. protos/monitor.proto
+
+
+message HeartBeatWrapper {
+    HeartBeat node_status_desc = 1;
+}
+
+
+
+
+
+
