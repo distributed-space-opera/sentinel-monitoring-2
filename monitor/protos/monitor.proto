@@ -7,6 +7,10 @@ service Monitor {
     rpc PersistHeartbeat (HeartBeat) returns (HeartBeatReceivedACK) {}
 }
 
+message HeartBeatWrapper {
+    HeartBeat node_status_desc = 1;
+}
+
 message HeartBeat {
     string node_ip = 1;
     string node_status = 2; // "HEALTHY"

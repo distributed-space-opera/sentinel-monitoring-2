@@ -13,11 +13,17 @@ class Monitor(monitor_pb2_grpc.MonitorServicer):
     def PersistHeartbeat(self, request, context):
         # message = 'Heartbeat received ' + ' for IP: ' + request.node_status_desc.node_ip + ' | Status: ' + request.node_status_desc.node_status
         # message = 'Heartbeat received'
-        message = 'Heartbeat received | ' + str(request)  #WORKS
+
+        # print(request.node_ip)
+
+        # message = 'Heartbeat received | ' + str(request)  #WORKS
         # message = 'Heartbeat received | ' + json.loads(str(request))
 
         # req = json.loads(request)
         # message = 'Heartbeat received ' + ' for IP: ' + request["node_status_desc.node_ip"] + ' | Status: ' + request["node_status_desc.node_status"]
+        # print(message)
+
+        message = 'Heartbeat received ' + ' for IP: ' + request.node_ip + ' | Status: ' + request.node_status
         print(message)
         result = {
             'successACK': message
