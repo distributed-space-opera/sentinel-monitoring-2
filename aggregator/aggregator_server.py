@@ -5,13 +5,16 @@ from concurrent import futures;
 
 class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
 
-    def PersistHeartBeat(self, request, context):
+    def PeristHeartBeat(self, request, context):
         message = 'Heartbeat received ' + ' for IP: ' + request.node_ip + ' | Status: ' + request.node_status
         print(message)
         result = {
             'ACK': message
         }
         return aggregator_pb2.HeartBeatPersistedACK(**result)
+
+    def GetAllNodesHealth(self, request, context):
+        pass
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
