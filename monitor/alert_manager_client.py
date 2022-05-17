@@ -2,17 +2,16 @@ import grpc
 import alert_manager_pb2 as pb2
 import alert_manager_pb2_grpc as pb2_grpc
 
-ALERT_MANAGER_HOST = 'localhost'
-ALERT_MANAGER_PORT = 50051
 
 class AlertManagerClient(object):
     def __init__(self):
-        self.host = ALERT_MANAGER_HOST
-        self.server_port = ALERT_MANAGER_PORT
+        self.host = 'localhost'
+        self.server_port = 50051
 
         self.channel = grpc.insecure_channel(
             '{}:{}'.format(self.host, self.server_port))
 
+        # bind the client and the server
         self.stub = pb2_grpc.AlertManagerServiceStub(self.channel)
 
     def notifyNodeDown(self, nodeIP):

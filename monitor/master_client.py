@@ -19,7 +19,8 @@ class MasterClient(object):
         request = master_comm_pb2.GetListOfNodesRequest()
 
         print('request, 'f'{request}')
-        return self.stub.GetListOfNodes(request)
+        return ["1111","2222"]
+        # return self.stub.GetListOfNodes(request)
 
 if __name__ == '__main__':
     client = MasterClient()

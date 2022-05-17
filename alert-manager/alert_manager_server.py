@@ -13,7 +13,7 @@ class AlertManagerService(pb2_grpc.AlertManagerServiceServicer):
         pass
 
     def NodeDown(self, request, context):
-        nodeIP = request.nodeIP
+        nodeIP = request.nodeIP 
         print("Node down ", nodeIP)
         self.notifyByEmail(nodeIP)
         result = {'responseCode': 200, 'responseMessage': "OK"}
