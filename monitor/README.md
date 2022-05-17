@@ -10,3 +10,9 @@ python3 -m grpc_tools.protoc --proto_path=./protos ./protos/master-comm.proto --
 Node sentinel
 
 python3 -m grpc_tools.protoc --proto_path=./protos ./protos/sentinel-comm.proto --python_out=./ --grpc_python_out=./
+
+
+Aggregator 
+
+python3 -m grpc_tools.protoc --proto_path=./protos ./protos/aggregator.proto --python_out=./ --grpc_python_out=./
+
