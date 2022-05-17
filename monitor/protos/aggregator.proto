@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-service AggregatorClient {
+service AggregatorService {
     rpc PeristHeartBeat (PersistableHeartBeat) returns (HeartBeatPersistedACK) {}
     rpc GetAllNodesHealth(AllNodesHealthRequest) returns (AllNodesHealthResponse) {}
 }

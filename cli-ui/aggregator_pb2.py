@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t\"\x17\n\x15\x41llNodesHealthRequest\"G\n\x16\x41llNodesHealthResponse\x12-\n\x0e\x61llNodesHealth\x18\x01 \x03(\x0b\x32\x15.PersistableHeartBeat2\x9e\x01\n\x10\x41ggregatorClient\x12\x42\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACK\"\x00\x12\x46\n\x11GetAllNodesHealth\x12\x16.AllNodesHealthRequest\x1a\x17.AllNodesHealthResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t\"\x17\n\x15\x41llNodesHealthRequest\"G\n\x16\x41llNodesHealthResponse\x12-\n\x0e\x61llNodesHealth\x18\x01 \x03(\x0b\x32\x15.PersistableHeartBeat2\x9f\x01\n\x11\x41ggregatorService\x12\x42\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACK\"\x00\x12\x46\n\x11GetAllNodesHealth\x12\x16.AllNodesHealthRequest\x1a\x17.AllNodesHealthResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -203,19 +203,19 @@ _sym_db.RegisterMessage(AllNodesHealthResponse)
 
 
 
-_AGGREGATORCLIENT = _descriptor.ServiceDescriptor(
-  name='AggregatorClient',
-  full_name='AggregatorClient',
+_AGGREGATORSERVICE = _descriptor.ServiceDescriptor(
+  name='AggregatorService',
+  full_name='AggregatorService',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=261,
-  serialized_end=419,
+  serialized_end=420,
   methods=[
   _descriptor.MethodDescriptor(
     name='PeristHeartBeat',
-    full_name='AggregatorClient.PeristHeartBeat',
+    full_name='AggregatorService.PeristHeartBeat',
     index=0,
     containing_service=None,
     input_type=_PERSISTABLEHEARTBEAT,
@@ -225,7 +225,7 @@ _AGGREGATORCLIENT = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='GetAllNodesHealth',
-    full_name='AggregatorClient.GetAllNodesHealth',
+    full_name='AggregatorService.GetAllNodesHealth',
     index=1,
     containing_service=None,
     input_type=_ALLNODESHEALTHREQUEST,
@@ -234,8 +234,8 @@ _AGGREGATORCLIENT = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_AGGREGATORCLIENT)
+_sym_db.RegisterServiceDescriptor(_AGGREGATORSERVICE)
 
-DESCRIPTOR.services_by_name['AggregatorClient'] = _AGGREGATORCLIENT
+DESCRIPTOR.services_by_name['AggregatorService'] = _AGGREGATORSERVICE
 
 # @@protoc_insertion_point(module_scope)

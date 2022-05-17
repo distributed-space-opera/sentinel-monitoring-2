@@ -3,7 +3,6 @@
 # source: aggregator.proto
 """Generated protocol buffer code."""
 from google.protobuf import descriptor as _descriptor
-from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -14,14 +13,166 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t\"\x17\n\x15\x41llNodesHealthRequest\"G\n\x16\x41llNodesHealthResponse\x12-\n\x0e\x61llNodesHealth\x18\x01 \x03(\x0b\x32\x15.PersistableHeartBeat2\x9e\x01\n\x10\x41ggregatorClient\x12\x42\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACK\"\x00\x12\x46\n\x11GetAllNodesHealth\x12\x16.AllNodesHealthRequest\x1a\x17.AllNodesHealthResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor.FileDescriptor(
+  name='aggregator.proto',
+  package='',
+  syntax='proto3',
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_pb=b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t\"\x17\n\x15\x41llNodesHealthRequest\"G\n\x16\x41llNodesHealthResponse\x12-\n\x0e\x61llNodesHealth\x18\x01 \x03(\x0b\x32\x15.PersistableHeartBeat2\x9f\x01\n\x11\x41ggregatorService\x12\x42\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACK\"\x00\x12\x46\n\x11GetAllNodesHealth\x12\x16.AllNodesHealthRequest\x1a\x17.AllNodesHealthResponse\"\x00\x62\x06proto3'
+)
 
 
 
-_PERSISTABLEHEARTBEAT = DESCRIPTOR.message_types_by_name['PersistableHeartBeat']
-_HEARTBEATPERSISTEDACK = DESCRIPTOR.message_types_by_name['HeartBeatPersistedACK']
-_ALLNODESHEALTHREQUEST = DESCRIPTOR.message_types_by_name['AllNodesHealthRequest']
-_ALLNODESHEALTHRESPONSE = DESCRIPTOR.message_types_by_name['AllNodesHealthResponse']
+
+_PERSISTABLEHEARTBEAT = _descriptor.Descriptor(
+  name='PersistableHeartBeat',
+  full_name='PersistableHeartBeat',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='node_ip', full_name='PersistableHeartBeat.node_ip', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='node_status', full_name='PersistableHeartBeat.node_status', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='timestamp', full_name='PersistableHeartBeat.timestamp', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='response_time', full_name='PersistableHeartBeat.response_time', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=20,
+  serialized_end=122,
+)
+
+
+_HEARTBEATPERSISTEDACK = _descriptor.Descriptor(
+  name='HeartBeatPersistedACK',
+  full_name='HeartBeatPersistedACK',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ACK', full_name='HeartBeatPersistedACK.ACK', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=124,
+  serialized_end=160,
+)
+
+
+_ALLNODESHEALTHREQUEST = _descriptor.Descriptor(
+  name='AllNodesHealthRequest',
+  full_name='AllNodesHealthRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=162,
+  serialized_end=185,
+)
+
+
+_ALLNODESHEALTHRESPONSE = _descriptor.Descriptor(
+  name='AllNodesHealthResponse',
+  full_name='AllNodesHealthResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='allNodesHealth', full_name='AllNodesHealthResponse.allNodesHealth', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=187,
+  serialized_end=258,
+)
+
+_ALLNODESHEALTHRESPONSE.fields_by_name['allNodesHealth'].message_type = _PERSISTABLEHEARTBEAT
+DESCRIPTOR.message_types_by_name['PersistableHeartBeat'] = _PERSISTABLEHEARTBEAT
+DESCRIPTOR.message_types_by_name['HeartBeatPersistedACK'] = _HEARTBEATPERSISTEDACK
+DESCRIPTOR.message_types_by_name['AllNodesHealthRequest'] = _ALLNODESHEALTHREQUEST
+DESCRIPTOR.message_types_by_name['AllNodesHealthResponse'] = _ALLNODESHEALTHRESPONSE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
 PersistableHeartBeat = _reflection.GeneratedProtocolMessageType('PersistableHeartBeat', (_message.Message,), {
   'DESCRIPTOR' : _PERSISTABLEHEARTBEAT,
   '__module__' : 'aggregator_pb2'
@@ -50,18 +201,41 @@ AllNodesHealthResponse = _reflection.GeneratedProtocolMessageType('AllNodesHealt
   })
 _sym_db.RegisterMessage(AllNodesHealthResponse)
 
-_AGGREGATORCLIENT = DESCRIPTOR.services_by_name['AggregatorClient']
-if _descriptor._USE_C_DESCRIPTORS == False:
 
-  DESCRIPTOR._options = None
-  _PERSISTABLEHEARTBEAT._serialized_start=20
-  _PERSISTABLEHEARTBEAT._serialized_end=122
-  _HEARTBEATPERSISTEDACK._serialized_start=124
-  _HEARTBEATPERSISTEDACK._serialized_end=160
-  _ALLNODESHEALTHREQUEST._serialized_start=162
-  _ALLNODESHEALTHREQUEST._serialized_end=185
-  _ALLNODESHEALTHRESPONSE._serialized_start=187
-  _ALLNODESHEALTHRESPONSE._serialized_end=258
-  _AGGREGATORCLIENT._serialized_start=261
-  _AGGREGATORCLIENT._serialized_end=419
+
+_AGGREGATORSERVICE = _descriptor.ServiceDescriptor(
+  name='AggregatorService',
+  full_name='AggregatorService',
+  file=DESCRIPTOR,
+  index=0,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=261,
+  serialized_end=420,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='PeristHeartBeat',
+    full_name='AggregatorService.PeristHeartBeat',
+    index=0,
+    containing_service=None,
+    input_type=_PERSISTABLEHEARTBEAT,
+    output_type=_HEARTBEATPERSISTEDACK,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetAllNodesHealth',
+    full_name='AggregatorService.GetAllNodesHealth',
+    index=1,
+    containing_service=None,
+    input_type=_ALLNODESHEALTHREQUEST,
+    output_type=_ALLNODESHEALTHRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_AGGREGATORSERVICE)
+
+DESCRIPTOR.services_by_name['AggregatorService'] = _AGGREGATORSERVICE
+
 # @@protoc_insertion_point(module_scope)

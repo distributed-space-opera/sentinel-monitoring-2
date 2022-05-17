@@ -14,13 +14,13 @@ class AggregatorServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.PersistHeartBeat = channel.unary_unary(
-                '/AggregatorService/PersistHeartBeat',
+        self.PeristHeartBeat = channel.unary_unary(
+                '/AggregatorService/PeristHeartBeat',
                 request_serializer=aggregator__pb2.PersistableHeartBeat.SerializeToString,
                 response_deserializer=aggregator__pb2.HeartBeatPersistedACK.FromString,
                 )
         self.GetAllNodesHealth = channel.unary_unary(
-                '/AggregatorClient/GetAllNodesHealth',
+                '/AggregatorService/GetAllNodesHealth',
                 request_serializer=aggregator__pb2.AllNodesHealthRequest.SerializeToString,
                 response_deserializer=aggregator__pb2.AllNodesHealthResponse.FromString,
                 )
@@ -29,7 +29,7 @@ class AggregatorServiceStub(object):
 class AggregatorServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def PersistHeartBeat(self, request, context):
+    def PeristHeartBeat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -44,8 +44,8 @@ class AggregatorServiceServicer(object):
 
 def add_AggregatorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'PersistHeartBeat': grpc.unary_unary_rpc_method_handler(
-                    servicer.PersistHeartBeat,
+            'PeristHeartBeat': grpc.unary_unary_rpc_method_handler(
+                    servicer.PeristHeartBeat,
                     request_deserializer=aggregator__pb2.PersistableHeartBeat.FromString,
                     response_serializer=aggregator__pb2.HeartBeatPersistedACK.SerializeToString,
             ),
@@ -65,7 +65,7 @@ class AggregatorService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def PersistHeartBeat(request,
+    def PeristHeartBeat(request,
             target,
             options=(),
             channel_credentials=None,
@@ -75,7 +75,7 @@ class AggregatorService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/AggregatorService/PersistHeartBeat',
+        return grpc.experimental.unary_unary(request, target, '/AggregatorService/PeristHeartBeat',
             aggregator__pb2.PersistableHeartBeat.SerializeToString,
             aggregator__pb2.HeartBeatPersistedACK.FromString,
             options, channel_credentials,
@@ -92,7 +92,7 @@ class AggregatorService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/AggregatorClient/GetAllNodesHealth',
+        return grpc.experimental.unary_unary(request, target, '/AggregatorService/GetAllNodesHealth',
             aggregator__pb2.AllNodesHealthRequest.SerializeToString,
             aggregator__pb2.AllNodesHealthResponse.FromString,
             options, channel_credentials,

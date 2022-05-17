@@ -5,7 +5,7 @@ import grpc
 import aggregator_pb2 as aggregator__pb2
 
 
-class AggregatorClientStub(object):
+class AggregatorServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,18 +15,18 @@ class AggregatorClientStub(object):
             channel: A grpc.Channel.
         """
         self.PeristHeartBeat = channel.unary_unary(
-                '/AggregatorClient/PeristHeartBeat',
+                '/AggregatorService/PeristHeartBeat',
                 request_serializer=aggregator__pb2.PersistableHeartBeat.SerializeToString,
                 response_deserializer=aggregator__pb2.HeartBeatPersistedACK.FromString,
                 )
         self.GetAllNodesHealth = channel.unary_unary(
-                '/AggregatorClient/GetAllNodesHealth',
+                '/AggregatorService/GetAllNodesHealth',
                 request_serializer=aggregator__pb2.AllNodesHealthRequest.SerializeToString,
                 response_deserializer=aggregator__pb2.AllNodesHealthResponse.FromString,
                 )
 
 
-class AggregatorClientServicer(object):
+class AggregatorServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def PeristHeartBeat(self, request, context):
@@ -42,7 +42,7 @@ class AggregatorClientServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_AggregatorClientServicer_to_server(servicer, server):
+def add_AggregatorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'PeristHeartBeat': grpc.unary_unary_rpc_method_handler(
                     servicer.PeristHeartBeat,
@@ -56,12 +56,12 @@ def add_AggregatorClientServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'AggregatorClient', rpc_method_handlers)
+            'AggregatorService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class AggregatorClient(object):
+class AggregatorService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -75,7 +75,7 @@ class AggregatorClient(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/AggregatorClient/PeristHeartBeat',
+        return grpc.experimental.unary_unary(request, target, '/AggregatorService/PeristHeartBeat',
             aggregator__pb2.PersistableHeartBeat.SerializeToString,
             aggregator__pb2.HeartBeatPersistedACK.FromString,
             options, channel_credentials,
@@ -92,7 +92,7 @@ class AggregatorClient(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/AggregatorClient/GetAllNodesHealth',
+        return grpc.experimental.unary_unary(request, target, '/AggregatorService/GetAllNodesHealth',
             aggregator__pb2.AllNodesHealthRequest.SerializeToString,
             aggregator__pb2.AllNodesHealthResponse.FromString,
             options, channel_credentials,
