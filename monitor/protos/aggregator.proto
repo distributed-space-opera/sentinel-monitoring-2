@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service AggregatorClient {
+    rpc PeristHeartBeat (PersistableHeartBeat) returns (HeartBeatPersistedACK);
+}
+
+message PersistableHeartBeat {
+    string node_ip = 1;
+    string node_status = 2;
+    string timestamp = 3;
+    string response_time = 4;
+}
+
+message HeartBeatPersistedACK {
+    string successACK = 1;
+}

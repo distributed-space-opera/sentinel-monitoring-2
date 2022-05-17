@@ -2,7 +2,6 @@ import grpc
 import alert_manager_pb2 as pb2
 import alert_manager_pb2_grpc as pb2_grpc
 
-
 class AlertManagerClient(object):
     def __init__(self):
         self.host = 'localhost'

@@ -3,9 +3,12 @@ import time
 import alert_manager_client
 import master_client
 import sentinel_node_client
+from datetime import datetime
+import aggregator_client
 
 alertManagerClient = alert_manager_client.AlertManagerClient()
 masterClient = master_client.MasterClient()
+aggregatorClient = aggregator_client.AggregatorClient()
 
 def start():
     t = Thread(target=heartbeat)
@@ -47,7 +50,6 @@ def check_nodes_health(nodes):
             alertManagerClient.notifyNodeDown(ip)
     
         # send data to aggregator
-
 
 if __name__ == '__main__':
     start()
