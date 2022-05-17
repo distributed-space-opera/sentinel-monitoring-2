@@ -6,8 +6,10 @@ from concurrent import futures;
 class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
 
     def PeristHeartBeat(self, request, context):
-        message = 'Heartbeat received ' + ' for IP: ' + request.node_ip + ' | Status: ' + request.node_status
+        # message = 'Heartbeat received ' + ' for IP: ' + request.node_ip + ' | Status: ' + request.node_status
+        message = 'Heartbeat received ' + ' for IP: ' + request.node_ip + ' | Heartbeat: ' + str(request)
         print(message)
+        print('------------------------------------------------------------------------------------------------\n')
         result = {
             'ACK': message
         }
