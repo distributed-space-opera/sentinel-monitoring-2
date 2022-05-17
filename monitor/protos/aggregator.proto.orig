@@ -1,8 +1,13 @@
 syntax = "proto3";
 
+<<<<<<< HEAD
 service AggregatorClient {
     rpc PeristHeartBeat (PersistableHeartBeat) returns (HeartBeatPersistedACK) {}
     rpc GetAllNodesHealth(AllNodesHealthRequest) returns (AllNodesHealthResponse) {}
+=======
+service AggregatorService {
+    rpc PersistHeartBeat (PersistableHeartBeat) returns (HeartBeatPersistedACK);
+>>>>>>> 355853042ca6b59fc13f84421660aa23c7c1f01b
 }
 
 message PersistableHeartBeat {
@@ -13,12 +18,17 @@ message PersistableHeartBeat {
 }
 
 message HeartBeatPersistedACK {
-    string ACK = 1;
+<<<<<<< HEAD
+    string successACK = 1;
 }
+
 message AllNodesHealthRequest{
 
 }
 
 message AllNodesHealthResponse{
     repeated PersistableHeartBeat allNodesHealth = 1;
+=======
+    string ACK = 1;
+>>>>>>> 355853042ca6b59fc13f84421660aa23c7c1f01b
 }
