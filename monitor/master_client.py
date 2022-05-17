@@ -22,8 +22,8 @@ class MasterClient(object):
         request = master_comm_pb2.GetListOfNodesRequest()
         return ["localhost:50051","localhost:50052"]
         # nodes = self.stub.GetListOfNodes(request)
-        # print(nodes)
-        # return nodes
+        # print(nodes.nodeips)
+        # return nodes.nodeips
 
     def updateNodeDown(self, ip):
         request = master_comm_pb2.NodeDownUpdateRequest(nodeip = ip)

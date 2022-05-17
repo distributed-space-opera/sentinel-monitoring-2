@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from platform import node
 import grpc
 from concurrent import futures
@@ -6,6 +7,7 @@ import alert_manager_pb2 as pb2
 import alert_manager_pb2_grpc as pb2_grpc
 import email_service as EmailService
 
+lastEmailSent = {}
 
 class AlertManagerService(pb2_grpc.AlertManagerServiceServicer):
 
@@ -15,7 +17,8 @@ class AlertManagerService(pb2_grpc.AlertManagerServiceServicer):
     def NodeDown(self, request, context):
         nodeIP = request.nodeIP 
         print("Node down ", nodeIP)
-        self.notifyByEmail(nodeIP)
+        if(nodeIP not in lastEmailSent or ( lastEmailSent[nodeIP] < (datetime.now() - timedelta(minutes=5)))):
+            self.notifyByEmail(nodeIP)
         result = {'responseCode': 200, 'responseMessage': "OK"}
 
         return pb2.NodeStatusResponse(**result)
@@ -32,8 +35,7 @@ class AlertManagerService(pb2_grpc.AlertManagerServiceServicer):
             """ % nodeIP
 
         EmailService .sendEmail(subject, body)
-
-
+        lastEmailSent.update({nodeIP: datetime.now()})
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
