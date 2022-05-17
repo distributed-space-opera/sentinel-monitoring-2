@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"+\n\x15HeartBeatPersistedACK\x12\x12\n\nsuccessACK\x18\x01 \x01(\t2T\n\x10\x41ggregatorClient\x12@\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACKb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t2V\n\x11\x41ggregatorService\x12\x41\n\x10PersistHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACKb\x06proto3')
 
 
 
@@ -34,14 +34,14 @@ HeartBeatPersistedACK = _reflection.GeneratedProtocolMessageType('HeartBeatPersi
   })
 _sym_db.RegisterMessage(HeartBeatPersistedACK)
 
-_AGGREGATORCLIENT = DESCRIPTOR.services_by_name['AggregatorClient']
+_AGGREGATORSERVICE = DESCRIPTOR.services_by_name['AggregatorService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _PERSISTABLEHEARTBEAT._serialized_start=20
   _PERSISTABLEHEARTBEAT._serialized_end=122
   _HEARTBEATPERSISTEDACK._serialized_start=124
-  _HEARTBEATPERSISTEDACK._serialized_end=167
-  _AGGREGATORCLIENT._serialized_start=169
-  _AGGREGATORCLIENT._serialized_end=253
+  _HEARTBEATPERSISTEDACK._serialized_end=160
+  _AGGREGATORSERVICE._serialized_start=162
+  _AGGREGATORSERVICE._serialized_end=248
 # @@protoc_insertion_point(module_scope)

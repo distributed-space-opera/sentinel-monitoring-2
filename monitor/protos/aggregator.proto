@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-service AggregatorClient {
-    rpc PeristHeartBeat (PersistableHeartBeat) returns (HeartBeatPersistedACK);
+service AggregatorService {
+    rpc PersistHeartBeat (PersistableHeartBeat) returns (HeartBeatPersistedACK);
 }
 
 message PersistableHeartBeat {
@@ -12,5 +12,5 @@ message PersistableHeartBeat {
 }
 
 message HeartBeatPersistedACK {
-    string successACK = 1;
+    string ACK = 1;
 }
