@@ -2,8 +2,11 @@ import grpc
 import master_comm_pb2
 import master_comm_pb2_grpc
 
-MASTER_HOST = 'localhost'
-MASTER_PORT = 50051
+MASTER_HOST =  "ec2-3-134-115-89.us-east-2.compute.amazonaws.com"
+MASTER_PORT = 6090
+
+# MASTER_HOST =  "localhost"
+# MASTER_PORT = 50051
 
 class MasterClient(object):
     def __init__(self):
@@ -17,10 +20,16 @@ class MasterClient(object):
 
     def getAllNodes(self):
         request = master_comm_pb2.GetListOfNodesRequest()
+        return ["localhost:50051","localhost:50052"]
+        # nodes = self.stub.GetListOfNodes(request)
+        # print(nodes)
+        # return nodes
 
-        print('request, 'f'{request}')
-        return ["1111","2222"]
-        # return self.stub.GetListOfNodes(request)
+    def updateNodeDown(self, ip):
+        request = master_comm_pb2.NodeDownUpdateRequest(nodeip = ip)
+        response = self.stub.NodeDownUpdate(request)
+        print("Master down update response ", response)
+        return response
 
 if __name__ == '__main__':
     client = MasterClient()

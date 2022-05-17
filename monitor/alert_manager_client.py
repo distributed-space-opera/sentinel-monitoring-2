@@ -16,8 +16,6 @@ class AlertManagerClient(object):
 
     def notifyNodeDown(self, nodeIP):
         request = pb2.NodeStatusRequest(nodeIP=nodeIP)
-
-        print('request, 'f'{request}')
         return self.stub.NodeDown(request)
 
 
