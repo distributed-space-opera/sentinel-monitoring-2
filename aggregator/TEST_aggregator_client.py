@@ -33,15 +33,10 @@ class TESTAggregatorClient():
     def getAllNodesHealth(self):
 
 
-
         request = aggregator_pb2.AllNodesHealthRequest()
         response = self.stub.GetAllNodesHealth(request)
 
         print('Response from all nodes health api: {}'.format(str(response)))
-        print('allNodesHealth: {}'.format(response.allNodesHealth))
-
-
-
 
 if __name__ == '__main__':
     client = TESTAggregatorClient()

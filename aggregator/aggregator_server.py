@@ -3,6 +3,9 @@ import redis
 import aggregator_pb2;
 import aggregator_pb2_grpc;
 from concurrent import futures;
+import json
+from google.protobuf.json_format import MessageToDict
+
 
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
@@ -27,13 +30,10 @@ class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
 
 
     def persistToRedis(self, node_status_obj):
-
         redisKey = node_status_obj.node_ip + REDIS_KEY_HEALTH_STATUS_SUBSTRING
-        self.redisClient.rpush(redisKey, str(node_status_obj))
+        dict_msg = MessageToDict(node_status_obj)
+        self.redisClient.rpush(redisKey, json.dumps(dict_msg))
         print('Presisted Heartbeat at redis key: {}'.format(redisKey))
-
-
-
 
     def PeristHeartBeat(self, request, context):
         # message = 'Heartbeat received ' + ' for IP: ' + request.node_ip + ' | Status: ' + request.node_status
@@ -42,6 +42,7 @@ class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
         print('Persisting heartbeat to redis')
         
         # persist this heartbeat in redis
+        print(type(request))
         self.persistToRedis(request)
 
 
@@ -60,41 +61,31 @@ class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
         return aggregator_pb2.HeartBeatPersistedACK(**result)
 
 
-
-
-    
-    
-
-
-
-
     def GetAllNodesHealth(self, request, context):
-        
-
         print('Call to grpc api GetAllNodesHealth received')
         allNodesHealthPyList = self.getNodeUpdates()
 
         res = aggregator_pb2.AllNodesHealthResponse()
 
+        allNodesHealthResponse = aggregator_pb2.AllNodesHealthResponse()
         for nodeHealth in allNodesHealthPyList:
+            obj = json.loads(nodeHealth)
+            tempNodeHealthResponse = aggregator_pb2.PersistableHeartBeat(
+                node_ip = obj['nodeIp'],
+                node_status = obj['nodeStatus'],
+                timestamp = obj['timestamp'],
+                response_time = obj['responseTime']
+            )
+            allNodesHealthResponse.allNodesHealth.append(tempNodeHealthResponse)
 
-            print('PROCESSING NODE Health: {}'.format(nodeHealth))
 
-            ph = aggregator_pb2.PersistableHeartBeat()
-            # ph.ParseFromString(str(nodeHealth))
-            ph.ParseFromString(bytes(str(nodeHealth), 'utf-8'))
-            res.allNodesHealth.add(ph)
-        
-
-        return res
+        return allNodesHealthResponse
 
         # key * with substring HEALTH_STATUS - to get all nodes
 
             # for each
                 # get the latest entry in redis, using lrange command
         
-        pass
-
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     aggregator_pb2_grpc.add_AggregatorServiceServicer_to_server(AggregatorService(), server)
