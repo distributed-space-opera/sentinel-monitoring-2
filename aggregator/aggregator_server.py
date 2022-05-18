@@ -70,6 +70,24 @@ class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
 
     def GetAllNodesHealth(self, request, context):
         
+
+        print('Call to grpc api GetAllNodesHealth received')
+        allNodesHealthPyList = self.getNodeUpdates()
+
+        res = aggregator_pb2.AllNodesHealthResponse()
+
+        for nodeHealth in allNodesHealthPyList:
+
+            print('PROCESSING NODE Health: {}'.format(nodeHealth))
+
+            ph = aggregator_pb2.PersistableHeartBeat()
+            # ph.ParseFromString(str(nodeHealth))
+            ph.ParseFromString(bytes(str(nodeHealth), 'utf-8'))
+            res.allNodesHealth.add(ph)
+        
+
+        return res
+
         # key * with substring HEALTH_STATUS - to get all nodes
 
             # for each

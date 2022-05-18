@@ -26,6 +26,23 @@ class TESTAggregatorClient():
             print("ACK from Monitor: " + str(response.ACK))
             time.sleep(1)
 
+
+    
+
+
+    def getAllNodesHealth(self):
+
+
+
+        request = aggregator_pb2.AllNodesHealthRequest()
+        response = self.stub.GetAllNodesHealth(request)
+
+        print('Response from all nodes health api: {}'.format(str(response)))
+        print('allNodesHealth: {}'.format(response.allNodesHealth))
+
+
+
+
 if __name__ == '__main__':
     client = TESTAggregatorClient()
     node_status_desc = {
@@ -35,4 +52,6 @@ if __name__ == '__main__':
         'response_time': '0.01' 
     }
     # ack = client.sendDataToAggregator(node_status_desc)
-    client.sendData(node_status_desc)
+    # client.sendData(node_status_desc)
+
+    client.getAllNodesHealth()
