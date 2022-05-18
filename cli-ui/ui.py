@@ -17,6 +17,17 @@ def refresh():
         x = PrettyTable()
         x.field_names = ["Instance IP", " Status ", " Time checked at ", " Ping time"]
         allNodesHealth  = aggregatorClient.getAllNodesHealth()
+
+
+        try:
+            iterator = iter(allNodesHealth)
+        except:
+            screen.clear()
+            screen.addstr(0, 0, 'Cannot communicate to aggregator')
+            screen.refresh()
+            curses.napms(1000)
+            continue
+        
         for nodeHealth in allNodesHealth:
             x.add_row([nodeHealth.node_ip, nodeHealth.node_status, nodeHealth.timestamp, nodeHealth.response_time])
         screen.addstr(0, 0, str(x))

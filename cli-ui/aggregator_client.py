@@ -35,18 +35,20 @@ class AggregatorClient():
 
     def getAllNodesHealth(self):
         request = aggregator_pb2.AllNodesHealthRequest()
-        
-        # response = self.stub.GetAllNodesHealth(request)
 
+        try:
+            response = self.stub.GetAllNodesHealth(request)
+        except:
+            return aggregator_pb2.AllNodesHealthResponse()
         ## TODO: Remove hardcode
-        allNodesHealthResponse = aggregator_pb2.AllNodesHealthResponse()
-        for i in range(5):
-            tempNodeHealthResponse = aggregator_pb2.PersistableHeartBeat()
-            tempNodeHealthResponse.node_ip = '10.1.1.1'
-            tempNodeHealthResponse.node_status = 'UP'
-            tempNodeHealthResponse.timestamp = str(datetime.now())
-            tempNodeHealthResponse.response_time = '0.01'
-            allNodesHealthResponse.allNodesHealth.append(tempNodeHealthResponse)
+        # allNodesHealthResponse = aggregator_pb2.AllNodesHealthResponse()
+        # for i in range(5):
+        #     tempNodeHealthResponse = aggregator_pb2.PersistableHeartBeat()
+        #     tempNodeHealthResponse.node_ip = '10.1.1.1'
+        #     tempNodeHealthResponse.node_status = 'UP'
+        #     tempNodeHealthResponse.timestamp = str(datetime.now())
+        #     tempNodeHealthResponse.response_time = '0.01'
+        #     allNodesHealthResponse.allNodesHealth.append(tempNodeHealthResponse)
 
 
         # allNodesHealth = []
@@ -55,7 +57,7 @@ class AggregatorClient():
         # response = aggregator_pb2.AllNodesHealthResponse(allNodesHealth)
 
         # print("All nodes health response", response.allNodesHealth)
-        return allNodesHealthResponse.allNodesHealth
+        return response.allNodesHealth
 
 if __name__ == '__main__':
     client = AggregatorClient()
