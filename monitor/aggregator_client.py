@@ -19,18 +19,23 @@ class AggregatorClient():
 
     def sendData(self, node_status_obj):
 
-        while (True):
-            # request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
-            request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
-            response = self.stub.PeristHeartBeat(request)
-            print("Monitor Server Response: " + str(response))
-            print("ACK from Monitor: " + str(response.ACK))
-            time.sleep(1)
+        # while (True):
+        #     # request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
+        #     request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
+        #     response = self.stub.PeristHeartBeat(request)
+        #     print("Monitor Server Response: " + str(response))
+        #     print("ACK from Monitor: " + str(response.ACK))
+        #     time.sleep(1)
+
+        request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
+        response = self.stub.PeristHeartBeat(request)
+        print("Monitor Server Response: " + str(response))
+        print("ACK from Monitor: " + str(response.ACK))
 
 if __name__ == '__main__':
     client = AggregatorClient()
     node_status_desc = {
-        'node_ip': '127.0.0.1',
+        'node_ip': '127.0.0.5',
         'node_status': 'HEALTHY',
         'timestamp': str(datetime.now()),
         'response_time': '0.01' 

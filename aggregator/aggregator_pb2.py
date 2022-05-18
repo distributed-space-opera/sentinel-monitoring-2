@@ -14,12 +14,14 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t2W\n\x11\x41ggregatorService\x12\x42\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACK\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x61ggregator.proto\"f\n\x14PersistableHeartBeat\x12\x0f\n\x07node_ip\x18\x01 \x01(\t\x12\x13\n\x0bnode_status\x18\x02 \x01(\t\x12\x11\n\ttimestamp\x18\x03 \x01(\t\x12\x15\n\rresponse_time\x18\x04 \x01(\t\"$\n\x15HeartBeatPersistedACK\x12\x0b\n\x03\x41\x43K\x18\x01 \x01(\t\"\x17\n\x15\x41llNodesHealthRequest\"G\n\x16\x41llNodesHealthResponse\x12-\n\x0e\x61llNodesHealth\x18\x01 \x03(\x0b\x32\x15.PersistableHeartBeat2\x9f\x01\n\x11\x41ggregatorService\x12\x42\n\x0fPeristHeartBeat\x12\x15.PersistableHeartBeat\x1a\x16.HeartBeatPersistedACK\"\x00\x12\x46\n\x11GetAllNodesHealth\x12\x16.AllNodesHealthRequest\x1a\x17.AllNodesHealthResponse\"\x00\x62\x06proto3')
 
 
 
 _PERSISTABLEHEARTBEAT = DESCRIPTOR.message_types_by_name['PersistableHeartBeat']
 _HEARTBEATPERSISTEDACK = DESCRIPTOR.message_types_by_name['HeartBeatPersistedACK']
+_ALLNODESHEALTHREQUEST = DESCRIPTOR.message_types_by_name['AllNodesHealthRequest']
+_ALLNODESHEALTHRESPONSE = DESCRIPTOR.message_types_by_name['AllNodesHealthResponse']
 PersistableHeartBeat = _reflection.GeneratedProtocolMessageType('PersistableHeartBeat', (_message.Message,), {
   'DESCRIPTOR' : _PERSISTABLEHEARTBEAT,
   '__module__' : 'aggregator_pb2'
@@ -34,6 +36,20 @@ HeartBeatPersistedACK = _reflection.GeneratedProtocolMessageType('HeartBeatPersi
   })
 _sym_db.RegisterMessage(HeartBeatPersistedACK)
 
+AllNodesHealthRequest = _reflection.GeneratedProtocolMessageType('AllNodesHealthRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ALLNODESHEALTHREQUEST,
+  '__module__' : 'aggregator_pb2'
+  # @@protoc_insertion_point(class_scope:AllNodesHealthRequest)
+  })
+_sym_db.RegisterMessage(AllNodesHealthRequest)
+
+AllNodesHealthResponse = _reflection.GeneratedProtocolMessageType('AllNodesHealthResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ALLNODESHEALTHRESPONSE,
+  '__module__' : 'aggregator_pb2'
+  # @@protoc_insertion_point(class_scope:AllNodesHealthResponse)
+  })
+_sym_db.RegisterMessage(AllNodesHealthResponse)
+
 _AGGREGATORSERVICE = DESCRIPTOR.services_by_name['AggregatorService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
@@ -42,6 +58,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _PERSISTABLEHEARTBEAT._serialized_end=122
   _HEARTBEATPERSISTEDACK._serialized_start=124
   _HEARTBEATPERSISTEDACK._serialized_end=160
-  _AGGREGATORSERVICE._serialized_start=162
-  _AGGREGATORSERVICE._serialized_end=249
+  _ALLNODESHEALTHREQUEST._serialized_start=162
+  _ALLNODESHEALTHREQUEST._serialized_end=185
+  _ALLNODESHEALTHRESPONSE._serialized_start=187
+  _ALLNODESHEALTHRESPONSE._serialized_end=258
+  _AGGREGATORSERVICE._serialized_start=261
+  _AGGREGATORSERVICE._serialized_end=420
 # @@protoc_insertion_point(module_scope)
