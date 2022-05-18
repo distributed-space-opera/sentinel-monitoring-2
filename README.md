@@ -15,8 +15,8 @@
 ## How to run
 
 1. Install and configure python3
-2. Install required packages ``` pip install -r requirements.txt```
-3. Clone the repository
+2. Clone the repository
+3. Install required packages ``` pip install -r requirements.txt```
 4. Open new terminal and navigate to the folder `sentinel-monitoring-2/aggregator`
 5. Start aggregator using the following command
 ``` python3 aggregator_server.py ```
