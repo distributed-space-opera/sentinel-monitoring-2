@@ -55,30 +55,59 @@ def notifyAlertManager(ip):
     except:
         print("Can't connect to Alert manager")
 
+# {ip : [time_elapsed, next_check_time]}
+expo_backoff = {}
+
+def set_expo_backoff(ip):
+    if ip in expo_backoff:
+        expo_backoff[ip][1] = 2 * expo_backoff[ip][1]
+    else:
+        expo_backoff[ip] = [0, 1]
+
+def should_check(ip):
+    if ip in expo_backoff:
+        expo_backoff[ip][0] =  (expo_backoff[ip][0] + 1)
+        if expo_backoff[ip][0] == expo_backoff[ip][1]:
+            return True
+        else: 
+            return False
+    else:
+        return True
+
 def check_nodes_health(nodes):
     for node in nodes:
         ip = node.split(":")[0]
         port = 3000 # node.split(":")[1]
         health_check_success = True
 
-        start = None
-        end = None
+        check = should_check(ip)
+        print(expo_backoff, ip, check);
+
+        if not check:
+            continue
+
         try:
             # Check health of node
             starttime = datetime.now()
             nodeClient = sentinel_node_client.NodeClient(ip, port)
             status = nodeClient.checkHealth()
             endtime = datetime.now()
+            expo_backoff.pop(ip, None)
             print(status)
         except:
             health_check_success = False
+            set_expo_backoff(ip)
 
-            # notify master
-            notifyMaster(ip)
+            if expo_backoff[ip][0] == 8:
+                print("Mark node as down", ip)
+                expo_backoff.pop(ip, None)
 
-            # notify alert manager. check if not notified within past 5 mins
-            notifyAlertManager(ip)
-           
+                # notify master
+                notifyMaster(ip)
+
+                # notify alert manager. check if not notified within past 5 mins
+                notifyAlertManager(ip)
+            
     
         # send data to aggregator
         if health_check_success:
