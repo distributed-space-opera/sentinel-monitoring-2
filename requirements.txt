@@ -1,0 +1,5 @@
+grpc==1.0.0
+grpcio==1.40.0
+prettytable==3.3.0
+protobuf==3.20.1
+redis==4.0.2
