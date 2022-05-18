@@ -19,8 +19,8 @@ class AggregatorClient():
     def sendData(self, node_status_obj):
         request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
         response = self.stub.PeristHeartBeat(request)
-        print("Monitor Server Response: " + str(response))
-        print("ACK from Monitor: " + str(response.ACK))
+        # print("Monitor Server Response: " + str(response))
+        # print("ACK from Monitor: " + str(response.ACK))
 
 if __name__ == '__main__':
     client = AggregatorClient()

@@ -94,11 +94,13 @@ def check_nodes_health(nodes):
             endtime = datetime.now()
             expo_backoff.pop(ip, None)
             print(status)
+            sendDataToAgg(ip, health_check_success, '%.3f' % ((endtime - starttime).total_seconds() * 1000))
         except:
-            health_check_success = False
             set_expo_backoff(ip)
 
             if expo_backoff[ip][0] == 8:
+                health_check_success = False
+
                 print("Mark node as down", ip)
                 expo_backoff.pop(ip, None)
 
@@ -107,13 +109,11 @@ def check_nodes_health(nodes):
 
                 # notify alert manager. check if not notified within past 5 mins
                 notifyAlertManager(ip)
+
+                sendDataToAgg(ip, health_check_success, 'NA')
+            else:
+                sendDataToAgg(ip, True, 'NA')
             
-    
-        # send data to aggregator
-        if health_check_success:
-            sendDataToAgg(ip, health_check_success, '%.3f' % ((endtime - starttime).total_seconds() * 1000))
-        else:
-            sendDataToAgg(ip, health_check_success, 'NA')
 if __name__ == '__main__':
     start()
 

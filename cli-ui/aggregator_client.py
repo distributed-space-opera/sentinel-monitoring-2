@@ -28,8 +28,8 @@ class AggregatorClient():
         while (True):
             request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
             response = self.stub.PeristHeartBeat(request)
-            print("Monitor Server Response: " + str(response))
-            print("ACK from Monitor: " + str(response.successACK))
+            # print("Monitor Server Response: " + str(response))
+            # print("ACK from Monitor: " + str(response.successACK))
 
             time.sleep(1)
 
