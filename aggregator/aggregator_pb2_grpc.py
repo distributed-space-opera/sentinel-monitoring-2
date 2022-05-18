@@ -19,23 +19,12 @@ class AggregatorServiceStub(object):
                 request_serializer=aggregator__pb2.PersistableHeartBeat.SerializeToString,
                 response_deserializer=aggregator__pb2.HeartBeatPersistedACK.FromString,
                 )
-        self.GetAllNodesHealth = channel.unary_unary(
-                '/AggregatorService/GetAllNodesHealth',
-                request_serializer=aggregator__pb2.AllNodesHealthRequest.SerializeToString,
-                response_deserializer=aggregator__pb2.AllNodesHealthResponse.FromString,
-                )
 
 
 class AggregatorServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def PeristHeartBeat(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetAllNodesHealth(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -48,11 +37,6 @@ def add_AggregatorServiceServicer_to_server(servicer, server):
                     servicer.PeristHeartBeat,
                     request_deserializer=aggregator__pb2.PersistableHeartBeat.FromString,
                     response_serializer=aggregator__pb2.HeartBeatPersistedACK.SerializeToString,
-            ),
-            'GetAllNodesHealth': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetAllNodesHealth,
-                    request_deserializer=aggregator__pb2.AllNodesHealthRequest.FromString,
-                    response_serializer=aggregator__pb2.AllNodesHealthResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -78,22 +62,5 @@ class AggregatorService(object):
         return grpc.experimental.unary_unary(request, target, '/AggregatorService/PeristHeartBeat',
             aggregator__pb2.PersistableHeartBeat.SerializeToString,
             aggregator__pb2.HeartBeatPersistedACK.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetAllNodesHealth(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/AggregatorService/GetAllNodesHealth',
-            aggregator__pb2.AllNodesHealthRequest.SerializeToString,
-            aggregator__pb2.AllNodesHealthResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

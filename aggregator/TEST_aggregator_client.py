@@ -21,7 +21,7 @@ class TESTAggregatorClient():
 
         while (True):
             request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
-            response = self.stub.PersistHeartBeat(request)
+            response = self.stub.PeristHeartBeat(request)
             print("Monitor Server Response: " + str(response))
             print("ACK from Monitor: " + str(response.ACK))
             time.sleep(1)
