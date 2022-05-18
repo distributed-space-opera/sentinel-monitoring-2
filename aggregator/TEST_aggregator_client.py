@@ -18,7 +18,6 @@ class TESTAggregatorClient():
 
 
     def sendData(self, node_status_obj):
-
         while (True):
             request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
             response = self.stub.PeristHeartBeat(request)
@@ -26,13 +25,7 @@ class TESTAggregatorClient():
             print("ACK from Monitor: " + str(response.ACK))
             time.sleep(1)
 
-
-    
-
-
     def getAllNodesHealth(self):
-
-
         request = aggregator_pb2.AllNodesHealthRequest()
         response = self.stub.GetAllNodesHealth(request)
 
@@ -47,6 +40,6 @@ if __name__ == '__main__':
         'response_time': '0.01' 
     }
     # ack = client.sendDataToAggregator(node_status_desc)
-    # client.sendData(node_status_desc)
+    client.sendData(node_status_desc)
 
     client.getAllNodesHealth()

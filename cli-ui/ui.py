@@ -2,6 +2,8 @@ from threading import Thread
 from prettytable import PrettyTable
 import aggregator_client
 import curses
+from datetime import datetime
+
 
 
 aggregatorClient = aggregator_client.AggregatorClient()
@@ -15,11 +17,12 @@ def refresh():
     ''' every 1 second '''
     while True:
         x = PrettyTable()
-        x.field_names = ["Instance IP", " Status ", " Time checked at ", " Ping time"]
-        allNodesHealth  = aggregatorClient.getAllNodesHealth()
+        x.field_names = ["Instance IP", " Ping time (ms)", " Status ", " Last checked "]
+        
 
 
         try:
+            allNodesHealth  = aggregatorClient.getAllNodesHealth()
             iterator = iter(allNodesHealth)
         except:
             screen.clear()
@@ -29,7 +32,9 @@ def refresh():
             continue
         
         for nodeHealth in allNodesHealth:
-            x.add_row([nodeHealth.node_ip, nodeHealth.node_status, nodeHealth.timestamp, nodeHealth.response_time])
+            dtobj = datetime.fromisoformat(nodeHealth.timestamp)
+            delta =  datetime.now() - dtobj 
+            x.add_row([nodeHealth.node_ip, nodeHealth.response_time, nodeHealth.node_status, '{} second(s) ago.'.format(int(delta.total_seconds()))])
         screen.addstr(0, 0, str(x))
         screen.refresh()
         curses.napms(1000)

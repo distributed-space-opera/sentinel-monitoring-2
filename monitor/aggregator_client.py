@@ -14,19 +14,9 @@ class AggregatorClient():
         self.channel = grpc.insecure_channel(
             '{}:{}'.format(self.host, self.server_port))
 
-        # self.stub = aggregator_pb2_grpc.AggregatorClientStub(self.channel)
         self.stub = aggregator_pb2_grpc.AggregatorServiceStub(self.channel)
 
     def sendData(self, node_status_obj):
-
-        # while (True):
-        #     # request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
-        #     request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
-        #     response = self.stub.PeristHeartBeat(request)
-        #     print("Monitor Server Response: " + str(response))
-        #     print("ACK from Monitor: " + str(response.ACK))
-        #     time.sleep(1)
-
         request = aggregator_pb2.PersistableHeartBeat(**node_status_obj)
         response = self.stub.PeristHeartBeat(request)
         print("Monitor Server Response: " + str(response))
