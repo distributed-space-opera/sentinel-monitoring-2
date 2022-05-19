@@ -24,9 +24,10 @@ def refresh():
         try:
             allNodesHealth  = aggregatorClient.getAllNodesHealth()
             iterator = iter(allNodesHealth)
-        except:
+        except Exception as e:
             screen.clear()
-            screen.addstr(0, 0, 'Cannot communicate to aggregator')
+            screen.addstr(0, 0, 'Cannot communicate to aggregator' + str(e))
+            # print(e)
             screen.refresh()
             curses.napms(1000)
             continue
@@ -34,7 +35,7 @@ def refresh():
         for nodeHealth in allNodesHealth:
             dtobj = datetime.fromisoformat(nodeHealth.timestamp)
             delta =  datetime.now() - dtobj 
-            x.add_row([nodeHealth.node_ip, nodeHealth.response_time, nodeHealth.node_status, '{} second(s) ago.'.format(int(delta.total_seconds()))])
+            x.add_row([nodeHealth.node_ip, nodeHealth.response_time, nodeHealth.node_status if (int(delta.total_seconds()) < 20) else 'UNKNOWN' , '{} second(s) ago.'.format(int(delta.total_seconds()))])
         screen.addstr(0, 0, str(x))
         screen.refresh()
         curses.napms(1000)

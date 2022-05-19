@@ -77,7 +77,7 @@ def should_check(ip):
 def check_nodes_health(nodes):
     for node in nodes:
         ip = node.split(":")[0]
-        port = 3000 # node.split(":")[1]
+        port = 6080 # node.split(":")[1]
         health_check_success = True
 
         check = should_check(ip)
@@ -95,7 +95,10 @@ def check_nodes_health(nodes):
             expo_backoff.pop(ip, None)
             print(status)
             sendDataToAgg(ip, health_check_success, '%.3f' % ((endtime - starttime).total_seconds() * 1000))
-        except:
+        except Exception as e:
+            
+            print(ip, e)
+
             set_expo_backoff(ip)
 
             if expo_backoff[ip][0] == 8:

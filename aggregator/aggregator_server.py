@@ -16,6 +16,7 @@ class AggregatorService(aggregator_pb2_grpc.AggregatorServiceServicer):
     def __init__(self):
         self.redisClient = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, charset="utf-8", decode_responses=True)
         print('Redis client at ' + REDIS_HOST + ":" + str(REDIS_PORT) + " initialized")
+        self.redisClient.flushdb()
 
 
     def getNodeUpdates(self):

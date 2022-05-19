@@ -2,7 +2,9 @@ import grpc
 import master_comm_pb2
 import master_comm_pb2_grpc
 
-MASTER_HOST =  "ec2-18-189-2-173.us-east-2.compute.amazonaws.com"
+# MASTER_HOST =  "ec2-18-189-2-173.us-east-2.compute.amazonaws.com"
+MASTER_HOST = "192.168.43.177" # ROUNAK
+# MASTER_HOST = "192.168.1.159" # MAYANK
 MASTER_PORT = 6090
 
 # MASTER_HOST =  "localhost"
@@ -22,12 +24,12 @@ class MasterClient(object):
         try:
             print('Get list of nodes from master')
             request = master_comm_pb2.GetListOfNodesRequest()
-            return ["localhost1:50051","localhost2:50052", "localhost3:50053"]
-            # nodes = self.stub.GetListOfNodes(request)
-            # print("Node ips ", nodes.nodeips)
-            # return nodes.nodeips
-        except:
-            print("Cant fetch list of nodes from master")
+            # return ["192.168.220.175"]
+            nodes = self.stub.GetListOfNodes(request)
+            print("Node ips ", nodes.nodeips)
+            return nodes.nodeips
+        except Exception as e:
+            print("Cant fetch list of nodes from master" + str(e))
             return []
 
     def updateNodeDown(self, ip):

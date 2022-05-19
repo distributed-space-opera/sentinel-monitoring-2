@@ -5,6 +5,7 @@ import random
 
 class NodeClient(object):
     def __init__(self, host, port):
+        print(host, port)
         self.host = host
         self.server_port = port
 
@@ -16,11 +17,13 @@ class NodeClient(object):
     def checkHealth(self):
         request = sentinel_comm_pb2.healthCheckRequest()
         
-        c = random.choice(["OK", "FAIL"])
-        if c == 'FAIL': raise Exception("Error") 
-        return "OK"
+        # c = random.choice(["OK", "FAIL"])
+        # if c == 'FAIL': raise Exception("Error") 
+        # return "OK"
         
-        # return self.stub.healthCheck(request)
+        response = self.stub.healthCheck(request, timeout = 1)
+        print('resss',response)
+        return response
 
 if __name__ == '__main__':
     client = NodeClient("localhost", 5055)
